@@ -3,6 +3,7 @@
 #include "../lib/ReadTerminal.h"
 #include "../lib/files.h"
 #include "../lib/strings.h"
+#include "../lib/arrays.h"
 
 #include <stdlib.h>
 #include <string.h>
@@ -14,6 +15,9 @@ void Run() {
 	char address[256];
 	int isAdressFilled = 0;
 
+	int *list = NULL;
+	int size = 1;
+
 	while (isRunning == 1) {
 		system("cls");
 		PrintMenu();
@@ -24,6 +28,25 @@ void Run() {
 		case 1:
 			break;
 		case 2:
+			AppendInt(&list, &size, ReadInt("Insert a number: "));
+
+			char input[24];
+			while (strcmp("n", input) != 0) {
+				ReadString("Do you want to add more numbers? (s/n): ", input);
+				while (strcmp("s", input) != 0 && strcmp("n", input) != 0) {
+					printf("Invalid choise, only s or n allowed.\n");
+					ReadString("Do you want to add more numbers? (s/n): ", input);
+				}
+				if (strcmp("n", input) == 0) {
+					continue;
+				}
+
+				AppendInt(&list, &size, ReadInt("Insert a number: "));
+			}
+			for (int i = 0; i < size; i++)
+			{
+				printf(list[i]);
+			}
 			break;
 		case 3:
 			break;
