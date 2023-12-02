@@ -55,3 +55,9 @@ dkms.conf
 x64/
 .vs
 *.vcxproj*
+
+
+#idea
+.idea/
+cmake-build-debug/
+CMakeLists.txt

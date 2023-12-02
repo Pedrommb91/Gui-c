@@ -5,7 +5,7 @@
 
 #include <stdlib.h>
 #include <string.h>
-
+#include "../lib/math.h"
 
 void Run() {
 	int isRunning = 1;
@@ -23,6 +23,7 @@ void Run() {
 		case 1:
 			break;
 		case 2:
+            adicionarValores();
 			break;
 		case 3:
 			break;
