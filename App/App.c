@@ -2,6 +2,7 @@
 #include "./Menu/menu.h"
 #include "../lib/ReadTerminal.h"
 #include "../lib/files.h"
+#include "../lib/strings.h"
 
 #include <stdlib.h>
 #include <string.h>
@@ -47,11 +48,32 @@ void Run() {
 			WaitForAnyKey();
 			break;
 		case 8:;
-			char lines[10][128];
-			GetLines("file.txt", lines);
-			for  (int i = 0; i < 10; i++)
+			char* fileName = "file.txt";
+			int lineCounter = GetLinesCount(fileName);
+			char** lines = (char**)malloc(lineCounter * sizeof(char*));
+			for (int i = 0; i < lineCounter; i++)
+				lines[i] = (char*)malloc(128 * sizeof(char));
+
+			GetLines(fileName, lines, &lineCounter);
+			for  (int i = 0; i < lineCounter; i++)
 			{
-				printf(lines[i]);
+				int tokenCounter = GetTokenCount(lines[i], ",");
+				char** tokens = (char**)malloc(tokenCounter * sizeof(char*));
+				for (int k = 0; k < tokenCounter; k++)
+					tokens[k] = (char*)malloc(128 * sizeof(char));
+
+				Split(lines[i], ",", tokens);
+				int sum = 0;
+				for (int j = 0; j < tokenCounter; j++)
+				{
+					printf(tokens[j]);
+					printf("\n");
+					if (IsNumber(tokens[j]) == 1) {
+						int n = ToInt(tokens[j]);
+						sum += n;
+					}
+				}
+				printf("%i\n", sum);
 			}
 			WaitForAnyKey();
 			break;
