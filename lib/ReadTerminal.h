@@ -16,6 +16,8 @@ int ReadInt(char sentence[]) {
 void ReadString(char sentence[], char *output) {
 	printf(sentence);
 	while (fgets(output, sizeof(output), stdin) != NULL) {
+		output[strcspn(output, "\r\n")] = 0;
+		fseek(stdin, 0, SEEK_END); // clean stding buffer: scanf leaves \n behind and when you call fgets it will get it
 		return;
 	}
 }
