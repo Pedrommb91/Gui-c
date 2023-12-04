@@ -11,5 +11,6 @@ void PrintMenu() {
 	printf("[6] - Insert yout address. \n");
 	printf("[7] - Print address.\n");
 	printf("[8] - Read file.\n");
+	printf("[9] - Fill the struct with validation\n");
 	printf("[0] - Exit\n");
 }

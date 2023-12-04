@@ -67,6 +67,10 @@ float ToFloat(char* str) {
     return atof(str);
 }
 
+int IsUpper(char c) {
+    return isupper(c);
+}
+
 
 #endif
 
