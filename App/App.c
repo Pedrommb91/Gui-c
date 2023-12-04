@@ -5,9 +5,33 @@
 #include "../lib/strings.h"
 #include "../lib/arrays.h"
 
-#include <stdlib.h>
 #include <string.h>
 
+PersonData NewPersonData() {
+	PersonData p;
+	p.firstName = malloc(64);
+	p.idNumber = malloc(16);
+	return p;
+}
+
+PersonData ReadNodeInfo() {
+	PersonData p = NewPersonData();
+	ReadString("First name: ", p.firstName);
+	if (strlen(p.firstName) > 0 && IsUpper(p.firstName[0]) == 0) {
+		printf("First name should starts with an upper case.\n");
+		return ReadNodeInfo();
+	}
+	ReadString("Number ID: ", p.idNumber);
+	if (strlen(p.idNumber) != 9) {
+		printf("Number should contain 9 digits.\n");
+		return ReadNodeInfo();
+	}
+	if (strlen(p.idNumber) > 0 && IsNumber(p.idNumber) != 1) {
+		printf("Only numbers are allowed.\n");
+		return ReadNodeInfo();
+	}
+	return p;
+}
 
 void Run() {
 	int isRunning = 1;
@@ -17,6 +41,8 @@ void Run() {
 
 	int *list = NULL;
 	int size = 1;
+
+	PersonData p = NewPersonData();
 
 	while (isRunning == 1) {
 		system("cls");
@@ -100,6 +126,11 @@ void Run() {
 			}
 			WaitForAnyKey();
 			break;
+		case 9:
+			p = ReadNodeInfo();
+			printf("First name: %s\n", p.firstName);
+			printf("id: %s\n", p.idNumber);
+			break;
 		case 0:
 			isRunning = 0;
 			break;
@@ -109,3 +140,4 @@ void Run() {
 		}
 	}
 }
+
