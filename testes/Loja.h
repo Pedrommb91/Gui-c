@@ -4,20 +4,23 @@
 
 #ifndef LOJA_H
 #define LOJA_H
-#include <iostream>
-#include<vector>
+
+#include <vector>
 
 #include "Instrumento.h"
-#include "Piano.h"
+
 
 using namespace std;
-class Loja:public Piano {
+class Loja {
 private:
     vector<Instrumento> i;
+
 public:
-    void adicionaInstrumento(Instrumento &i);
+    Loja()=default;
+    void adicionaInstrumento(Instrumento& i);
     void imprime();
 };
+
 
 
 

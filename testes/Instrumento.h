@@ -13,9 +13,9 @@ string marca;
 public:
     Instrumento()=default;
      Instrumento(string marca);
-    virtual string getInfo();
-   // string getmarca();
-
+    virtual string getInfo()=0;
+   string getmarca();
+//void setmarca(string marca);
 };
 
 

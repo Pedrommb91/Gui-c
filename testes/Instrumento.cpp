@@ -6,7 +6,9 @@
 Instrumento::Instrumento(string marca) {
     this->marca=marca;
 }
-
-/*string Instrumento::getmarca() {
-return marca;
+/*void Instrumento::setmarca(string marca) {
+    this->marca=marca;
 }*/
+string Instrumento::getmarca() {
+    return marca;
+}
